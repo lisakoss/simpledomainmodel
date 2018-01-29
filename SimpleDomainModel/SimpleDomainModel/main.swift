@@ -134,7 +134,7 @@ open class Job {
   }
 }
 
-/*////////////////////////////////////
+////////////////////////////////////
 // Person
 //
 open class Person {
@@ -142,17 +142,33 @@ open class Person {
   open var lastName : String = ""
   open var age : Int = 0
 
+  // only assign job if over 16
   fileprivate var _job : Job? = nil
   open var job : Job? {
-    get { }
+    get {
+        return _job
+    }
     set(value) {
+        if age >= 16 {
+            _job = value
+        } else {
+            _job = nil
+        }
     }
   }
   
+  // only assign spouse if over 18
   fileprivate var _spouse : Person? = nil
   open var spouse : Person? {
-    get { }
+    get {
+        return _spouse
+    }
     set(value) {
+        if age >= 18 {
+            _spouse = value
+        } else {
+            _spouse = nil
+        }
     }
   }
   
@@ -162,11 +178,13 @@ open class Person {
     self.age = age
   }
   
+  // display person in string format
   open func toString() -> String {
+    return "[Person: firstName:\(firstName) lastName:\(lastName) age:\(age) job:\(String(describing: job)) spouse:\(String(describing: spouse))]"
   }
 }
 
-////////////////////////////////////
+/*////////////////////////////////////
 // Family
 //
 open class Family {

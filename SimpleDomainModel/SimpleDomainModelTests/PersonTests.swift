@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ted Neward. All rights reserved.
 //
 
-/*import XCTest
+import XCTest
 
 class PersonTests: XCTestCase {
 
@@ -37,7 +37,7 @@ class PersonTests: XCTestCase {
   
 }
 
-class FamilyTests : XCTestCase {
+/*class FamilyTests : XCTestCase {
   
   func testFamily() {
     let ted = Person(firstName: "Ted", lastName: "Neward", age: 45)
