@@ -184,21 +184,43 @@ open class Person {
   }
 }
 
-/*////////////////////////////////////
+////////////////////////////////////
 // Family
 //
 open class Family {
   fileprivate var members : [Person] = []
   
   public init(spouse1: Person, spouse2: Person) {
+    if(spouse1.spouse == nil && spouse2.spouse == nil) {
+        spouse1.spouse = spouse2
+        spouse2.spouse = spouse1
+        members.append(spouse1)
+        members.append(spouse2)
+    }
   }
   
+  // have child in a family if one person is an adult (>= 21)
   open func haveChild(_ child: Person) -> Bool {
+    for person in members {
+        if(person.age >= 21) {
+            members.append(child)
+            return true
+        }
+    }
+    return false
   }
   
+  // calculate family income
   open func householdIncome() -> Int {
+    var totalIncome = 0
+    for person in members {
+        if person.job != nil {
+            totalIncome += (person.job?.calculateIncome(2000))!
+        }
+    }
+    return totalIncome
   }
-}*/
+}
 
 
 
