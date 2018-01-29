@@ -24,68 +24,76 @@ open class TestMe {
 // Money
 //
 public struct Money {
-  public var amount : Int
-  public var currency : String
-  
-  public func convert(_ to: String) -> Money {
-    var newMoney = Money(amount: 0, currency: to)
-    
-    switch self.currency {
-    case "USD":
-        switch to {
-        case "GBP":
-            newMoney.amount = Int(Double(amount) * 0.5)
-        case "EUR":
-            newMoney.amount = Int(Double(amount) * 1.5)
-        case "CAN":
-            newMoney.amount = Int(Double(amount) * 1.25)
-        default:
-            break
-        }
-    case "GBP":
-        switch to {
+    public var amount : Int
+    public var currency : String
+
+    // convert currencies
+    public func convert(_ to: String) -> Money {
+        var newMoney = Money(amount: amount, currency: to)
+
+        switch self.currency {
         case "USD":
-            newMoney.amount = Int(Double(amount) * 2)
-        case "EUR":
-            newMoney.amount = Int(Double(amount) * 3)
-        case "CAN":
-            newMoney.amount = Int(Double(amount) * 2.5)
-        default:
-            break
-        }
-    case "EUR":
-        switch to {
-        case "USD":
-            newMoney.amount = Int(Double(amount) * (2.0 / 3.0))
+            switch to {
+            case "GBP":
+                newMoney.amount = Int(Double(amount) * 0.5)
+            case "EUR":
+                newMoney.amount = Int(Double(amount) * 1.5)
+            case "CAN":
+                newMoney.amount = Int(Double(amount) * 1.25)
+            default:
+                break
+            }
         case "GBP":
-            newMoney.amount = Int(Double(amount) * (2.0 / 5.0))
-        case "CAN":
-            newMoney.amount = Int(Double(amount) * (6.0 / 5.0))
-        default:
-            break
-        }
-    case "CAN":
-        switch to {
-        case "USD":
-            newMoney.amount = Int(Double(amount) * (4.0 / 5.0))
-        case "GBP":
-            newMoney.amount = Int(Double(amount) / (2.0 / 5.0))
+            switch to {
+            case "USD":
+                newMoney.amount = Int(Double(amount) * 2)
+            case "EUR":
+                newMoney.amount = Int(Double(amount) * 3)
+            case "CAN":
+                newMoney.amount = Int(Double(amount) * 2.5)
+            default:
+                break
+            }
         case "EUR":
-            newMoney.amount = Int(Double(amount) * (6.0 / 5.0))
+            switch to {
+            case "USD":
+                newMoney.amount = Int(Double(amount) * (2.0 / 3.0))
+            case "GBP":
+                newMoney.amount = Int(Double(amount) * (2.0 / 5.0))
+            case "CAN":
+                newMoney.amount = Int(Double(amount) * (6.0 / 5.0))
+            default:
+                break
+            }
+        case "CAN":
+            switch to {
+            case "USD":
+                newMoney.amount = Int(Double(amount) * (4.0 / 5.0))
+            case "GBP":
+                newMoney.amount = Int(Double(amount) / (2.0 / 5.0))
+            case "EUR":
+                newMoney.amount = Int(Double(amount) * (6.0 / 5.0))
+            default:
+                break
+            }
         default:
             break
         }
-    default:
-        break
+        
+        return newMoney
     }
-    return newMoney
+    
+  // add currencies
+  public func add(_ to: Money) -> Money {
+    let initialMoney = Money(amount: amount, currency: currency).convert(to.currency)
+    return Money(amount: initialMoney.amount + to.amount, currency: to.currency)
   }
     
-  
-  /*public func add(_ to: Money) -> Money {
-  }
+  // subtract currencies
   public func subtract(_ from: Money) -> Money {
-  }*/
+    let initialMoney = Money(amount: amount, currency: currency).convert(from.currency)
+    return Money(amount: initialMoney.amount - from.amount, currency: from.currency)
+  }
 }
 
 /*////////////////////////////////////
