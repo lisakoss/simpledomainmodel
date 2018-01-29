@@ -28,15 +28,67 @@ public struct Money {
   public var currency : String
   
   public func convert(_ to: String) -> Money {
+    var newMoney = Money(amount: 0, currency: to)
+    
+    switch self.currency {
+    case "USD":
+        switch to {
+        case "GBP":
+            newMoney.amount = Int(Double(amount) * 0.5)
+        case "EUR":
+            newMoney.amount = Int(Double(amount) * 1.5)
+        case "CAN":
+            newMoney.amount = Int(Double(amount) * 1.25)
+        default:
+            break
+        }
+    case "GBP":
+        switch to {
+        case "USD":
+            newMoney.amount = Int(Double(amount) * 2)
+        case "EUR":
+            newMoney.amount = Int(Double(amount) * 3)
+        case "CAN":
+            newMoney.amount = Int(Double(amount) * 2.5)
+        default:
+            break
+        }
+    case "EUR":
+        switch to {
+        case "USD":
+            newMoney.amount = Int(Double(amount) * (2.0 / 3.0))
+        case "GBP":
+            newMoney.amount = Int(Double(amount) * (2.0 / 5.0))
+        case "CAN":
+            newMoney.amount = Int(Double(amount) * (6.0 / 5.0))
+        default:
+            break
+        }
+    case "CAN":
+        switch to {
+        case "USD":
+            newMoney.amount = Int(Double(amount) * (4.0 / 5.0))
+        case "GBP":
+            newMoney.amount = Int(Double(amount) / (2.0 / 5.0))
+        case "EUR":
+            newMoney.amount = Int(Double(amount) * (6.0 / 5.0))
+        default:
+            break
+        }
+    default:
+        break
+    }
+    return newMoney
   }
+    
   
-  public func add(_ to: Money) -> Money {
+  /*public func add(_ to: Money) -> Money {
   }
   public func subtract(_ from: Money) -> Money {
-  }
+  }*/
 }
 
-////////////////////////////////////
+/*////////////////////////////////////
 // Job
 //
 open class Job {
@@ -104,7 +156,7 @@ open class Family {
   
   open func householdIncome() -> Int {
   }
-}
+}*/
 
 
 

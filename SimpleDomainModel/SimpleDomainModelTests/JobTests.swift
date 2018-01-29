@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ted Neward. All rights reserved.
 //
 
-import XCTest
+/*import XCTest
 
 import SimpleDomainModel
 
@@ -38,4 +38,4 @@ class JobTests: XCTestCase {
     XCTAssert(job.calculateIncome(10) == 160)
   }
   
-}
+}*/

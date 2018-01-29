@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ted Neward. All rights reserved.
 //
 
-import XCTest
+/*import XCTest
 
 class PersonTests: XCTestCase {
 
@@ -70,4 +70,4 @@ class FamilyTests : XCTestCase {
     XCTAssert(familyIncome == 12000)
   }
   
-}
+}*/
